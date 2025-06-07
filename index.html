@@ -11,9 +11,9 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            /* Subtle blue-purple gradient background for a modern feel */
-            background: linear-gradient(to bottom right, #f0f4f8, #e0e7f3);
-            color: #374151; /* Dark gray text for readability */
+            /* Darker, more artistic background for the entire page */
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: #e2e8f0; /* Lighter text for contrast on dark background */
             scroll-behavior: smooth; /* Enable smooth scrolling for anchor links */
         }
         /* Custom styles for section titles with a vibrant accent and interactivity */
@@ -22,12 +22,12 @@
             padding-bottom: 0.75rem; /* Increased padding */
             margin-bottom: 1.5rem;
             /* New: Gradient text for a shiny effect */
-            background-image: linear-gradient(to right, #1e3a8a, #3b82f6, #1e3a8a); /* Darker blue to bright blue and back */
+            background-image: linear-gradient(to right, #63b3ed, #81e6d9, #63b3ed); /* Vibrant blue-green gradient */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             color: transparent; /* Needed for text-fill-color to work */
             /* New: Subtle text shadow for depth and sheen */
-            text-shadow: 0px 0px 8px rgba(59, 130, 246, 0.4), /* Blue glow */
+            text-shadow: 0px 0px 10px rgba(99, 179, 237, 0.5), /* Blue glow */
                          0px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
             cursor: pointer; /* Indicate it's clickable (even if just for hover effect) */
             transition: all 0.3s ease-in-out; /* Add transition for smoothness */
@@ -40,48 +40,181 @@
             bottom: 0;
             width: 70px; /* Slightly wider accent line */
             height: 5px; /* Thicker accent line */
-            background-color: #3b82f6; /* A vibrant blue accent */
+            background-color: #81e6d9; /* A vibrant accent matching text gradient */
             border-radius: 9999px; /* Fully rounded */
             transition: all 0.3s ease-in-out; /* Add transition for smoothness */
         }
         /* Hover effects for section titles */
         .section-title:hover {
             transform: translateY(-3px); /* Subtle lift on hover */
-            /* Adjust hover color if text-fill-color is used, maybe make the gradient brighter or add more shadow */
-            background-image: linear-gradient(to right, #1d4ed8, #60a5fa, #1d4ed8); /* Brighter gradient on hover */
-            text-shadow: 0px 0px 12px rgba(96, 165, 250, 0.6), /* Brighter blue glow */
+            background-image: linear-gradient(to right, #4299e1, #5ad2b4, #4299e1); /* Brighter gradient on hover */
+            text-shadow: 0px 0px 15px rgba(66, 153, 225, 0.7), /* Brighter glow */
                          0px 2px 4px rgba(0, 0, 0, 0.2); /* More prominent shadow */
         }
         .section-title:hover::after {
             width: 90px; /* Expand accent line on hover */
-            background-color: #2563eb; /* Slightly darker blue on hover */
+            background-color: #5ad2b4; /* Slightly different accent color on hover */
         }
-        /* Style for the main container for a more lifted look */
+        /* Style for the main container with glassy effect */
         .main-container {
-            border: 1px solid #e2e8f0; /* Soft border */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08); /* More prominent shadow */
-            /* Removed margin-top as main tag's padding handles it now */
+            border: 1px solid rgba(226, 232, 240, 0.15); /* Softer border */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05) inset; /* Deeper shadow with inner light border */
+            border-radius: 15px; /* Even more rounded corners */
+            background: rgba(255, 255, 255, 0.05); /* Very subtle transparent white */
+            backdrop-filter: blur(8px); /* Frosted glass effect */
+            -webkit-backdrop-filter: blur(8px); /* For Safari */
+            position: relative;
+            overflow: hidden;
+            color: #374151; /* Dark text within the main container */
         }
+
+        /* Abstract background shapes for main container */
+        .main-container::before,
+        .main-container::after {
+            content: '';
+            position: absolute;
+            opacity: 0.15; /* More visible */
+            border-radius: 50%;
+            filter: blur(60px); /* More blur */
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .main-container::before {
+            width: 180px; /* Slightly larger */
+            height: 180px;
+            top: -70px;
+            right: -70px;
+            background: linear-gradient(to right, #63b3ed, #81e6d9);
+        }
+
+        .main-container::after {
+            width: 250px; /* Larger */
+            height: 250px;
+            bottom: -100px;
+            left: -100px;
+            background: linear-gradient(to left, #a78bfa, #c4b5fd);
+        }
+
         /* Enhanced button styles */
         .btn-primary {
             background-image: linear-gradient(to right, #3b82f6, #60a5fa); /* Blue gradient */
             color: white;
             font-weight: 600;
             border-radius: 9999px;
-            /* Halved padding values for a smaller button */
-            padding: 0.375rem 0.875rem; /* Equivalent to py-1.5 px-3.5 */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 0.375rem 0.875rem;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4); /* Blue shadow */
             transition: all 0.3s ease-in-out;
         }
         .btn-primary:hover {
             background-image: linear-gradient(to right, #2563eb, #3b82f6);
-            transform: translateY(-2px); /* Slight lift on hover */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px); /* More lift on hover */
+            box-shadow: 0 8px 18px rgba(59, 130, 246, 0.6);
         }
         /* Card hover effect */
+        .skill-card {
+            transition: all 0.3s ease-in-out;
+            background-color: rgba(255, 255, 255, 0.1); /* More transparent */
+            border: 1px solid rgba(226, 232, 240, 0.2); /* Softer border */
+            z-index: 1;
+            position: relative;
+            color: #e2e8f0; /* Light text for content cards on dark background */
+        }
+        .skill-card h3, .skill-card ul li {
+            color: #e2e8f0; /* Ensure text inside cards is light */
+        }
         .skill-card:hover {
-            transform: translateY(-5px); /* Lift effect */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+            transform: translateY(-10px) scale(1.03); /* More pronounced lift and slight enlarge effect */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 0 0 3px rgba(59, 130, 246, 0.4); /* Stronger shadow and a subtle blue halo */
+            background-color: rgba(255, 255, 255, 0.15); /* Slightly less transparent on hover */
+        }
+
+        /* Artistic Navigation Pane Styles */
+        .nav-pane {
+            background: linear-gradient(160deg, #0d121a 0%, #171d2b 40%, #0d121a 100%); /* Even deeper dark gradient */
+            color: #e2e8f0;
+            box-shadow: 7px 0 25px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+            position: relative;
+            overflow: hidden;
+            border-right: 1px solid rgba(255, 255, 255, 0.05); /* Subtle right border */
+        }
+
+        /* Subtle background pattern for nav pane */
+        .nav-pane::before {
+            background-image: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 80%);
+            background-size: 20px 20px; /* Slightly larger dots */
+            opacity: 0.3; /* More visible */
+        }
+
+        .nav-pane .profile-name {
+            background-image: linear-gradient(to right, #81e6d9, #667eea, #81e6d9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            text-shadow: 0px 0px 12px rgba(129, 230, 217, 0.8); /* Brighter glow */
+            font-weight: 800; /* Extra bold */
+            letter-spacing: 0.05em; /* Slight letter spacing */
+        }
+
+        .nav-pane ul li a {
+            background: rgba(255, 255, 255, 0.03); /* Even more subtle initial background */
+            border-radius: 10px; /* Slightly more rounded for nav links */
+            padding: 0.8rem 1.4rem; /* More padding */
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            color: #a7d9f7; /* Brighter light blue for text */
+            font-weight: 600; /* Semi-bold */
+        }
+
+        .nav-pane ul li a::after { /* Animated underline/border */
+            content: '';
+            position: absolute;
+            left: 0%; /* Start from left */
+            bottom: 0;
+            width: 0%;
+            height: 4px; /* Thicker underline */
+            background: linear-gradient(to right, #3b82f6, #60a5fa, #3b82f6); /* Blue gradient for underline */
+            transition: all 0.4s ease-in-out; /* Slower transition */
+            border-radius: 9999px;
+        }
+
+        .nav-pane ul li a:hover {
+            background: rgba(59, 130, 246, 0.15); /* More noticeable blue tint on hover */
+            transform: translateX(10px) scale(1.05); /* More pronounced slide and enlarge effect */
+            box-shadow: 0 7px 20px rgba(59, 130, 246, 0.4); /* Stronger blue shadow */
+            color: #b3e6ff; /* Even brighter blue text on hover */
+            border-color: rgba(59, 130, 246, 0.5); /* Accent border on hover */
+        }
+
+        .nav-pane ul li a:hover::after {
+            width: 100%; /* Expand underline on hover */
+        }
+
+        /* Header section background */
+        header {
+            background: linear-gradient(to right, #2d3748, #4a5568, #2d3748); /* Darker gradient for header */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 12px; /* Consistent rounded corners */
+            color: #e2e8f0; /* Light text for header */
+        }
+        header h1 {
+            background-image: linear-gradient(to right, #81e6d9, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            text-shadow: 0px 0px 8px rgba(129, 230, 217, 0.6);
+        }
+        header p {
+            color: #a7d9f7; /* Lighter blue for subtitle */
+        }
+        header .text-gray-700 { /* Specific override for contact info */
+            color: #cbd5e0; /* Light gray for contact details */
+        }
+        header a {
+            color: #90cdf4; /* Light blue for links */
         }
     </style>
 </head>
@@ -100,35 +233,39 @@
     </nav>
 
     <!-- Left Navigation Pane (visible on larger screens) -->
-    <aside class="hidden md:flex flex-col flex-shrink-0 w-64 bg-gray-800 text-white shadow-xl z-40 fixed h-full top-0 left-0 overflow-y-auto">
+    <aside class="hidden md:flex flex-col flex-shrink-0 w-64 nav-pane z-40 fixed h-full top-0 left-0 overflow-y-auto">
         <div class="p-6">
             <div class="flex items-center mb-10">
-                <img src="uploaded:Photoroom_20250308_215804 - Copy.jpg-abd0ec9d-cbc7-4cce-b949-b66a8d96417f" alt="Marianne Joy Munsod Austria" class="w-16 h-16 rounded-full mr-3 object-cover border-2 border-blue-300">
-                <div class="text-2xl font-extrabold text-blue-200 tracking-wide">Marianne Austria</div>
+                <img src="https://placehold.co/64x64/3b82f6/ffffff?text=MA"
+                     alt="Marianne Joy Munsod Austria"
+                     class="w-16 h-16 rounded-full mr-3 object-cover border-2 border-blue-300"
+                     onerror="this.onerror=null;this.src='https://placehold.co/64x64/cccccc/333333?text=Profile';"
+                >
+                <div class="text-2xl font-extrabold profile-name tracking-wide">Marianne Austria</div>
             </div>
             <ul class="space-y-4 text-base">
-                <li><a href="#about-me" class="block p-3 rounded-lg hover:bg-blue-700 transition duration-200">👋 About Me</a></li>
-                <li><a href="#why-ideal-va" class="block p-3 rounded-lg hover:bg-blue-700 transition duration-200">🌟 Why I'm an Ideal Virtual Assistant</a></li>
-                <li><a href="#achievements" class="block p-3 rounded-lg hover:bg-blue-700 transition duration-200">💼 Key Achievements</a></li>
-                <li><a href="#experience-overview" class="block p-3 rounded-lg hover:bg-blue-700 transition duration-200">📊 Experience Overview</a></li>
-                <li><a href="#tools" class="block p-3 rounded-lg hover:bg-blue-700 transition duration-200">🛠️ Tools & Tech</a></li>
-                <li><a href="#existing-portfolio" class="block p-3 rounded-lg hover:bg-blue-700 transition duration-200">🔗 Portfolio</a></li>
+                <li><a href="#about-me" class="block">👋 About Me</a></li>
+                <li><a href="#why-ideal-va" class="block">🌟 Why I'm an Ideal Virtual Assistant</a></li>
+                <li><a href="#achievements" class="block">💼 Key Achievements</a></li>
+                <li><a href="#experience-overview" class="block">📊 Experience Overview</a></li>
+                <li><a href="#tools" class="block">🛠️ Tools & Tech</a></li>
+                <li><a href="#existing-portfolio" class="block">🔗 Portfolio</a></li>
             </ul>
         </div>
     </aside>
 
     <!-- Main Content Area -->
     <main class="flex-grow w-full md:ml-64 pt-20 md:pt-0 p-4 md:p-8">
-        <div class="max-w-4xl w-full bg-white rounded-lg main-container p-6 md:p-10 lg:p-12 mx-auto mt-4 md:mt-0">
+        <div class="max-w-4xl w-full rounded-lg main-container p-6 md:p-10 lg:p-12 mx-auto mt-4 md:mt-0">
 
             <!-- Header Section -->
-            <header class="text-center mb-8 md:mb-12 bg-blue-50 p-6 rounded-lg shadow-inner">
-                <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Marianne Joy Munsod Austria</h1>
-                <p class="text-lg md:text-xl font-semibold text-blue-600 mb-4">Virtual Assistant Portfolio</p>
+            <header class="text-center mb-8 md:mb-12 p-6 rounded-lg shadow-inner">
+                <h1 class="text-3xl md:text-4xl font-extrabold mb-2">Marianne Joy Munsod Austria</h1>
+                <p class="text-lg md:text-xl font-semibold mb-4">Virtual Assistant Portfolio</p>
                 <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-700">
-                    <p>📧 <a href="mailto:mariannejoyaustria@gmail.com" class="text-blue-700 hover:text-blue-900 hover:underline transition duration-300">mariannejoyaustria@gmail.com</a></p>
+                    <p>📧 <a href="mailto:mariannejoyaustria@gmail.com" class="hover:underline transition duration-300">mariannejoyaustria@gmail.com</a></p>
                     <p>📱 +63 928 199 9805</p>
-                    <p>🔗 <a href="https://www.linkedin.com/in/mariannejoyaustria/" target="_blank" rel="noopener noreferrer" class="text-blue-700 hover:text-blue-900 hover:underline transition duration-300">LinkedIn Profile</a></p>
+                    <p>🔗 <a href="https://www.linkedin.com/in/mariannejoyaustria/" target="_blank" rel="noopener noreferrer" class="hover:underline transition duration-300">LinkedIn Profile</a></p>
                 </div>
                 <!-- Link to Full Resume PDF -->
                 <a href="https://emzkie05.github.io/Resume_of_Marianne_Joy_Munsod_Austria-2025docx.pdf" class="inline-block mt-6 btn-primary text-sm">
@@ -137,9 +274,9 @@
             </header>
 
             <!-- About Me Section -->
-            <section id="about-me" class="mb-8 md:mb-10 bg-blue-50 p-6 rounded-lg shadow-sm">
+            <section id="about-me" class="mb-8 md:mb-10 p-6 rounded-lg shadow-sm skill-card">
                 <h2 class="text-2xl font-bold section-title">👋 About Me</h2>
-                <p class="text-base leading-relaxed text-gray-700">
+                <p class="text-base leading-relaxed">
                     A highly motivated and adaptable professional seeking a remote Virtual Assistant opportunity. With **over 14 years of comprehensive professional experience** across various roles, including **over 3 years in operations, team leadership, and strategic problem-solving**, I am eager to optimize processes, provide comprehensive support, and drive organizational success for my clients. My diverse background spans customer service, technical support, sales, advertising, and digital marketing, making me a versatile and impactful asset to any team.
                 </p>
             </section>
@@ -150,9 +287,9 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Proven Leadership & Operational Acumen -->
-                    <div class="bg-blue-50 p-6 rounded-lg skill-card transform transition duration-300">
-                        <h3 class="text-xl font-bold text-blue-800 mb-3 pb-2 border-b border-blue-200">Proven Leadership & Operational Acumen</h3>
-                        <ul class="list-disc list-inside space-y-2 text-base text-gray-700 mt-3">
+                    <div class="p-6 rounded-lg shadow-sm skill-card">
+                        <h3 class="text-xl font-bold mb-3 pb-2 border-b border-blue-400">Proven Leadership & Operational Acumen</h3>
+                        <ul class="list-disc list-inside space-y-2 text-base mt-3">
                             <li>**Team Management:** Over 3 years of experience managing high-performing teams and driving operational improvements.</li>
                             <li>**Performance Optimization:** Skilled in data analysis, KPI tracking, and developing process improvements for efficiency.</li>
                             <li>**Coaching & Development:** Proven ability to coach and mentor individuals, turning underperforming team members into high-performers.</li>
@@ -161,9 +298,9 @@
                     </div>
 
                     <!-- Digital Marketing & E-commerce Support Specialist -->
-                    <div class="bg-blue-50 p-6 rounded-lg skill-card transform transition duration-300">
-                        <h3 class="text-xl font-bold text-blue-800 mb-3 pb-2 border-b border-blue-200">Digital Marketing & E-commerce Support Specialist</h3>
-                        <ul class="list-disc list-inside space-y-2 text-base text-gray-700 mt-3">
+                    <div class="p-6 rounded-lg shadow-sm skill-card">
+                        <h3 class="text-xl font-bold mb-3 pb-2 border-b border-blue-400">Digital Marketing & E-commerce Support Specialist</h3>
+                        <ul class="list-disc list-inside space-y-2 text-base mt-3">
                             <li>**Facebook & Instagram Ads Expertise:** Former Subject Matter Expert with Facebook Blueprint certification.</li>
                             <li>**E-commerce Onboarding:** Assisted clients with Shopify, Facebook, and Instagram shop onboarding processes.</li>
                             <li>**Advertising Support:** Provided support for Facebook and Instagram accounts and advertising concerns.</li>
@@ -172,9 +309,9 @@
                     </div>
 
                     <!-- Global Travel Planning & Customer Service Expertise -->
-                    <div class="bg-blue-50 p-6 rounded-lg skill-card transform transition duration-300">
-                        <h3 class="text-xl font-bold text-blue-800 mb-3 pb-2 border-b border-blue-200">Global Travel Planning & Customer Service Expertise</h3>
-                        <ul class="list-disc list-inside space-y-2 text-base text-gray-700 mt-3">
+                    <div class="p-6 rounded-lg shadow-sm skill-card">
+                        <h3 class="text-xl font-bold mb-3 pb-2 border-b border-blue-400">Global Travel Planning & Customer Service Expertise</h3>
+                        <ul class="list-disc list-inside space-y-2 text-base mt-3">
                             <li>**International Client Support:** Proficient in assisting clients from diverse regions like Canada and the U.S. with comprehensive travel planning.</li>
                             <li>**End-to-End Vacation Planning:** Skilled in coordinating all aspects of travel, including airline tickets, hotel accommodations, car rentals, and activity bookings.</li>
                             <li>**Customized Itinerary Creation:** Adept at researching and building personalized travel packages, utilizing tools like Google Maps for destination knowledge (airports, airport codes, world map), ensuring custom solutions that align with client budgets and preferences.</li>
@@ -183,9 +320,9 @@
                     </div>
 
                     <!-- Creative Content & Administrative Support -->
-                    <div class="bg-blue-50 p-6 rounded-lg skill-card transform transition duration-300">
-                        <h3 class="text-xl font-bold text-blue-800 mb-3 pb-2 border-b border-blue-200">Creative Content & Administrative Support</h3>
-                        <ul class="list-disc list-inside space-y-2 text-base text-gray-700 mt-3">
+                    <div class="p-6 rounded-lg shadow-sm skill-card">
+                        <h3 class="text-xl font-bold mb-3 pb-2 border-b border-blue-400">Creative Content & Administrative Support</h3>
+                        <ul class="list-disc list-inside space-y-2 text-base mt-3">
                             <li>**Creative Editing:** Proficient in using CapCut for videos, and Adobe Photoshop & Canva for photos and graphics.</li>
                             <li>**Comprehensive Technical Support:** Experienced in remote technical assistance, adept at troubleshooting and resolving Microsoft Office application issues (Word, PowerPoint, Excel, Outlook) for both Windows and Mac OS users.</li>
                             <li>**Email & Data Management Expertise:** Skilled in resolving email configuration problems (SharePoint, IMAP) and recovering corrupt PST files, ensuring efficient navigation and management of emails and Outlook Calendars.</li>
@@ -195,9 +332,9 @@
                     </div>
 
                     <!-- Exceptional Adaptability & Communication -->
-                    <div class="bg-blue-50 p-6 rounded-lg skill-card transform transition duration-300">
-                        <h3 class="text-xl font-bold text-blue-800 mb-3 pb-2 border-b border-blue-200">Exceptional Adaptability & Communication</h3>
-                        <ul class="list-disc list-inside space-y-2 text-base text-gray-700 mt-3">
+                    <div class="p-6 rounded-lg shadow-sm skill-card">
+                        <h3 class="text-xl font-bold mb-3 pb-2 border-b border-blue-400">Exceptional Adaptability & Communication</h3>
+                        <ul class="list-disc list-inside space-y-2 text-base mt-3">
                             <li>**Quick Learner:** Highly adaptable to technology changes and willing to master any new tools.</li>
                             <li>**Multitasking Pro:** Highly productive in high-pressure environments, excelling in multi-tasking.</li>
                             <li>**Communication:** Strong communication skills with experience in mentoring and training.</li>
@@ -206,9 +343,9 @@
                     </div>
 
                     <!-- Adaptability & Continuous Learning (New Section) -->
-                    <div class="bg-blue-50 p-6 rounded-lg skill-card transform transition duration-300">
-                        <h3 class="text-xl font-bold text-blue-800 mb-3 pb-2 border-b border-blue-200">Adaptability & Continuous Learning</h3>
-                        <ul class="list-disc list-inside space-y-2 text-base text-gray-700 mt-3">
+                    <div class="p-6 rounded-lg shadow-sm skill-card">
+                        <h3 class="text-xl font-bold mb-3 pb-2 border-b border-blue-400">Adaptability & Continuous Learning</h3>
+                        <ul class="list-disc list-inside space-y-2 text-base mt-3">
                             <li>**Rapid Software Adoption:** Ability to quickly learn and master new software, systems, and platforms essential for diverse virtual assistant tasks.</li>
                             <li>**Proactive Skill Development:** Committed to staying updated with the latest industry trends, including new AI tools, digital marketing strategies, and productivity enhancements.</li>
                             <li>**Problem-Solving Mindset:** Eager to tackle unfamiliar challenges with a resourceful approach, utilizing various learning resources to find effective solutions.</li>
@@ -234,12 +371,12 @@
             </section>
 
             <!-- Experience Overview Section (New Bar Graph) -->
-            <section id="experience-overview" class="mb-8 md:mb-10 bg-blue-50 p-6 rounded-lg shadow-sm">
+            <section id="experience-overview" class="mb-8 md:mb-10 p-6 rounded-lg shadow-sm skill-card">
                 <h2 class="text-2xl font-bold section-title">📊 Experience Overview</h2>
-                <div class="canvas-container w-full" style="height: 100px;"> <!-- Reduced height to 100px -->
+                <div class="canvas-container w-full" style="height: 100px;">
                     <canvas id="experienceBarGraph" class="w-full h-full"></canvas>
                 </div>
-                <div class="legend flex flex-wrap justify-center gap-x-6 gap-y-2 mt-4 text-xs text-gray-700" id="experience-legend"> <!-- Reduced font size to text-xs -->
+                <div class="legend flex flex-wrap justify-center gap-x-6 gap-y-2 mt-4 text-xs" id="experience-legend">
                     <!-- Legend items will be generated by JavaScript -->
                 </div>
             </section>
@@ -248,25 +385,25 @@
             <section id="tools" class="mb-8 md:mb-10">
                 <h2 class="text-2xl font-bold section-title">🛠️ Tools & Technologies I'm Familiar With</h2>
                 <div class="flex flex-wrap gap-3 text-base">
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">CapCut</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">Adobe Photoshop</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">Canva</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">Microsoft Office (Excel, Word, PowerPoint, Outlook)</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">LogMeIn</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">Facebook & Instagram Ads Manager</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">Shopify</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">TikTok Shop</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">Shopee</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">Windows & Mac OS</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">Google Workspace (Sheets)</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">Google Calendar</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">Outlook Calendar</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">CRM (Customer Relationship Management) Software</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">Analytics Tools</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">Communication and Collaboration Tools (Microsoft Teams)</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">AI and Automation Tools</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">Cloud Computing Services</span>
-                    <span class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full shadow-sm">SharePoint</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">CapCut</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">Adobe Photoshop</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">Canva</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">Microsoft Office (Excel, Word, PowerPoint, Outlook)</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">LogMeIn</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">Facebook & Instagram Ads Manager</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">Shopify</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">TikTok Shop</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">Shopee</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">Windows & Mac OS</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">Google Workspace (Sheets)</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">Google Calendar</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">Outlook Calendar</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">CRM (Customer Relationship Management) Software</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">Analytics Tools</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">Communication and Collaboration Tools (Microsoft Teams)</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">AI and Automation Tools</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">Cloud Computing Services</span>
+                    <span class="bg-blue-600 text-white px-4 py-2 rounded-full shadow-md transition duration-300 hover:scale-105 hover:bg-blue-700">SharePoint</span>
                 </div>
             </section>
 
@@ -276,7 +413,7 @@
                 <p class="text-base leading-relaxed text-gray-700">
                     You can view my existing online portfolio for additional insights into my work and capabilities:
                     <br>
-                    <a href="https://emzkie05.github.io/index.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">https://emzkie05.github.io/index.html</a>
+                    <a href="https://emzkie05.github.io/index.html" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline font-medium">https://emzkie05.github.io/index.html</a>
                 </p>
             </section>
 
@@ -347,7 +484,7 @@
 
                 experienceData.forEach(item => {
                     const div = document.createElement('div');
-                    div.className = 'flex items-center text-xs'; // Added text-xs for legend items
+                    div.className = 'flex items-center text-xs text-e2e8f0'; /* Changed legend text color */
                     div.innerHTML = `
                         <span class="inline-block w-3 h-3 rounded-full mr-1.5" style="background-color: ${item.color};"></span>
                         ${item.label}
@@ -357,7 +494,7 @@
 
                 // Add a total documented experience label
                 const totalDiv = document.createElement('div');
-                totalDiv.className = 'flex items-center font-semibold text-xs text-gray-800 mt-2 w-full justify-center'; // Added text-xs and w-full justify-center for centering
+                totalDiv.className = 'flex items-center font-semibold text-xs text-white mt-2 w-full justify-center'; /* Changed total text color */
                 totalDiv.innerHTML = `Total Documented Experience: ${totalGraphYears.toFixed(1)} Years`;
                 legendContainer.appendChild(totalDiv);
             }
